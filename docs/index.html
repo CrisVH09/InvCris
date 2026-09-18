@@ -1,0 +1,702 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#071321">
+  <title>La fiesta de Cris | Spider-Man</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --red: #ed2031;
+      --ink: #071321;
+      --paper: #fff9ef;
+      --yellow: #ffd24e;
+      --sky: #dff6ff;
+      --blue: #0a5d99;
+      --muted: #dbeaf7;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      overflow-x: hidden;
+      background: #06101c;
+      color: white;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    a { text-decoration: none; }
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      background: linear-gradient(90deg, rgba(3,12,23,.98), rgba(3,12,23,.82) 34%, rgba(3,12,23,.2) 70%, rgba(3,12,23,.55)),
+                  url('https://images.unsplash.com/photo-1531259683007-016a7b628fc3?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(#fff 1px, transparent 1.5px);
+      background-size: 9px 9px;
+      opacity: 0.08;
+      pointer-events: none;
+    }
+
+    .nav, .wrap, .details {
+      position: relative;
+      z-index: 2;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 6%;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--red);
+      font: 1.8rem 'Bangers', sans-serif;
+      letter-spacing: .08em;
+      -webkit-text-stroke: 1px white;
+      text-shadow: 2px 2px #082d55;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      font-size: 1.5rem;
+    }
+
+    .nav-link {
+      display: inline-block;
+      padding: 12px 18px;
+      background: var(--red);
+      box-shadow: 3px 3px #000;
+      color: white;
+      font-size: .67rem;
+      font-weight: 800;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+    }
+
+    .wrap {
+      display: flex;
+      align-items: center;
+      min-height: calc(100vh - 120px);
+      padding: 7vh 6% 150px;
+    }
+
+    .copy {
+      width: min(58%, 610px);
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin: 0 0 14px;
+      padding: 8px 12px;
+      background: var(--yellow);
+      color: #10233c;
+      font-size: .61rem;
+      font-weight: 800;
+      letter-spacing: .14em;
+      transform: rotate(-2deg);
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font: clamp(4.8rem, 8.5vw, 8.8rem)/.73 'Bangers', sans-serif;
+      letter-spacing: .035em;
+      color: var(--red);
+      text-shadow: 3px 3px #fff;
+    }
+
+    h1 span { color: #f7f2eb; }
+
+    .copy p {
+      margin: 22px 0;
+      max-width: 560px;
+      font-size: 1.02rem;
+      line-height: 1.6;
+      color: rgba(255,255,255,.9);
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      padding: 0 22px;
+      background: var(--red);
+      box-shadow: 4px 4px #000;
+      color: #fff;
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .host {
+      position: absolute;
+      right: 6%;
+      bottom: 104px;
+      width: min(24vw, 320px);
+      min-width: 220px;
+      display: block;
+      padding: 10px;
+      background: rgba(6, 16, 28, .55);
+      border: 1px solid rgba(255,255,255,.18);
+      box-shadow: 12px 12px rgba(0,0,0,.28);
+      transform: rotate(3deg);
+      z-index: 2;
+    }
+
+    .host img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      object-position: center top;
+      border: 3px solid rgba(255,255,255,.18);
+      background: #0d1a2d;
+    }
+
+    .host-caption {
+      display: flex;
+      justify-content: center;
+      align-items: baseline;
+      gap: 10px;
+      padding: 12px 10px 6px;
+      font-family: 'Bangers', sans-serif;
+      font-size: 1.7rem;
+      color: #fff;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .host-caption span {
+      color: var(--yellow);
+      font-size: 1.6rem;
+    }
+
+    .details {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 12px;
+      padding: 18px 6% 30px;
+      border-top: 1px solid rgba(255,255,255,.12);
+      background: rgba(7, 19, 33, 0.45);
+      backdrop-filter: blur(4px);
+    }
+
+    .detail {
+      padding: 12px 14px;
+      border-left: 1px solid rgba(255,255,255,.12);
+    }
+
+    .detail:first-child { border-left: 0; }
+    .detail b {
+      display: block;
+      font-size: .74rem;
+      letter-spacing: .08em;
+      color: #fff;
+      text-transform: uppercase;
+    }
+    .detail span {
+      display: block;
+      margin-top: 6px;
+      font-size: .64rem;
+      color: rgba(255,255,255,.72);
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .mission-section {
+      position: relative;
+      overflow: hidden;
+      padding: 68px 6%;
+      background: #06101c;
+    }
+
+    .mission-grid {
+      width: min(1050px, 100%);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 52px;
+      align-items: center;
+    }
+
+    .hud {
+      padding: 26px 22px;
+      border: 1px solid #28709f;
+      background: linear-gradient(135deg, rgba(15,60,91,.72), rgba(3,16,28,.94));
+      box-shadow: inset 0 0 30px rgba(17,132,194,.2), 0 0 25px rgba(11,93,144,.2);
+    }
+
+    .hud-label {
+      margin: 0 0 18px;
+      color: #7cdaff;
+      font-size: .63rem;
+      font-weight: 800;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    .countdown {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    .time-unit {
+      padding: 15px 8px;
+      border: 1px solid #225b7e;
+      background: #061522;
+      text-align: center;
+    }
+
+    .time-unit b {
+      display: block;
+      color: #fff;
+      font: 2.15rem 'Bangers', sans-serif;
+      text-shadow: 0 0 10px #47bfff;
+    }
+
+    .time-unit span {
+      color: #74b9dc;
+      font-size: .52rem;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .menu-card {
+      position: relative;
+      padding: 28px 30px;
+      color: var(--ink);
+      background: var(--paper);
+      box-shadow: 9px 9px var(--red);
+      transform: rotate(1deg);
+    }
+
+    .menu-card::before {
+      content: "MENÚ DE LA MISIÓN";
+      position: absolute;
+      top: -14px;
+      left: 22px;
+      padding: 7px 12px;
+      background: var(--yellow);
+      font: 1rem 'Bangers', sans-serif;
+      letter-spacing: .07em;
+      transform: rotate(-2deg);
+    }
+
+    .menu-card h2 {
+      margin: 20px 0 12px;
+      color: var(--red);
+      font: 3.2rem/.85 'Bangers', sans-serif;
+      letter-spacing: .04em;
+    }
+
+    .menu-card p {
+      margin: 0;
+      color: rgba(7,19,33,.78);
+      line-height: 1.5;
+    }
+
+    .menu-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .menu-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      padding-bottom: 9px;
+      border-bottom: 2px dotted #9ab1bf;
+      font-size: .76rem;
+      font-weight: 800;
+      color: #0a2b44;
+    }
+
+    .menu-item span:last-child {
+      color: #0a5d99;
+      text-align: right;
+    }
+
+    .mission-button {
+      display: inline-block;
+      width: 100%;
+      margin-top: 18px;
+      min-height: 46px;
+      border: 0;
+      background: var(--red);
+      color: white;
+      cursor: pointer;
+      font: 800 .68rem 'Montserrat', sans-serif;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      box-shadow: 4px 4px #071321;
+    }
+
+    .confirm-section {
+      position: relative;
+      padding: 68px 6% 80px;
+      background: linear-gradient(180deg, #0c2740 0, #091a2d 36%, #091a2d 100%);
+    }
+
+    .confirm-box {
+      position: relative;
+      z-index: 1;
+      width: min(1200px, 100%);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 46px;
+      align-items: start;
+    }
+
+    .confirm-box h2 {
+      margin: 0 0 12px;
+      font: clamp(3.2rem, 6vw, 5rem)/.9 'Bangers', sans-serif;
+      letter-spacing: .05em;
+      color: var(--red);
+      text-shadow: 3px 3px #fff;
+    }
+
+    .confirm-box p {
+      margin: 0 0 12px;
+      color: rgba(255,255,255,.82);
+      line-height: 1.6;
+    }
+
+    .deadline {
+      margin-top: 18px;
+      color: var(--yellow) !important;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .form {
+      position: relative;
+      padding: 24px 20px 20px;
+      border-top: 4px solid var(--red);
+      border-left: 1px solid #9bc9df;
+      background: linear-gradient(135deg, rgba(126,207,239,.13) 0 1px, transparent 1px 18px), var(--paper);
+      box-shadow: 8px 8px var(--red), inset 4px 0 #0a5d99;
+      color: var(--ink);
+    }
+
+    .form::before {
+      content: "RSVP // SISTEMA DE MISIÓN";
+      display: block;
+      margin: -10px 0 20px;
+      padding: 8px 10px;
+      border-bottom: 1px solid #b7d1e1;
+      color: #0a5d99;
+      font-size: .55rem;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .field {
+      margin-bottom: 18px;
+    }
+
+    .field label, .legend {
+      display: block;
+      margin-bottom: 8px;
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .09em;
+      color: #0b4e78;
+      text-transform: uppercase;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    input, textarea {
+      width: 100%;
+      border: 1px solid #a9c9da;
+      border-left: 3px solid #6bb7db;
+      background: rgba(255,255,255,.94);
+      padding: 12px 14px;
+      font: 500 16px 'Montserrat', sans-serif;
+      color: #0d2333;
+    }
+
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: #0a75aa;
+      border-left-color: var(--red);
+      background: #fff;
+      box-shadow: 0 0 0 3px rgba(10,117,170,.14);
+    }
+
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .choices {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .choice {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 14px;
+      border: 1px solid #a9c9da;
+      border-left: 3px solid #6bb7db;
+      background: rgba(255,255,255,.92);
+      cursor: pointer;
+      font-size: .78rem;
+      font-weight: 700;
+      color: #10334d;
+    }
+
+    .choice input {
+      width: auto;
+      margin: 0;
+      accent-color: var(--red);
+    }
+
+    .submit {
+      width: 100%;
+      min-height: 50px;
+      border: 0;
+      background: var(--red);
+      color: white;
+      cursor: pointer;
+      font: 800 .68rem 'Montserrat', sans-serif;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      box-shadow: 4px 4px #071321;
+    }
+
+    .privacy {
+      margin-top: 12px !important;
+      font-size: .72rem !important;
+      color: rgba(13,35,51,.72) !important;
+      line-height: 1.5 !important;
+    }
+
+    .footer-note {
+      text-align: center;
+      padding: 22px 6% 40px;
+      color: rgba(255,255,255,.7);
+      font-size: .7rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 900px) {
+      .copy { width: 62%; }
+      .host { right: 4%; width: 220px; }
+      .mission-grid { grid-template-columns: 1fr; }
+      .confirm-box { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 700px) {
+      .nav { padding: 18px 5%; }
+      .brand { font-size: 1.45rem; }
+      .wrap { padding: 42px 5% 24px; }
+      .copy { width: 100%; }
+      .actions { display: grid; }
+      .button { width: 100%; }
+      .host {
+        position: relative;
+        right: auto;
+        bottom: auto;
+        width: min(72vw, 280px);
+        margin: 18px auto 28px;
+      }
+      .details {
+        grid-template-columns: 1fr;
+        gap: 4px;
+      }
+      .detail { border-left: 0; border-top: 1px solid rgba(255,255,255,.12); }
+      .detail:first-child { border-top: 0; }
+      .split, .choices { grid-template-columns: 1fr; }
+      .confirm-section { padding-top: 48px; }
+    }
+  </style>
+</head>
+<body>
+  <section class="hero">
+    <nav class="nav">
+      <div class="brand">
+        <span class="brand-mark">🕷</span>
+        SPIDER-MAN
+      </div>
+      <a class="nav-link" href="#confirmar">Confirmar</a>
+    </nav>
+
+    <main class="wrap">
+      <div class="copy">
+        <p class="eyebrow">¡Se buscan superhéroes!</p>
+        <h1>La fiesta<br>de <span>Cris</span></h1>
+        <p>La misión más divertida del año está por comenzar. Ponte tu traje favorito y acompáñanos a celebrar el nivel 23 de Cris.</p>
+        <p>Después de salvar el multiverso… ¡habrá pozole para recargar poderes!</p>
+        <div class="actions">
+          <a class="button" href="#confirmar">Unirme a la misión</a>
+        </div>
+      </div>
+    </main>
+
+    <a class="host" href="#confirmar" aria-label="Ir a confirmar asistencia">
+      <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=900&q=80" alt="Cris">
+      <span class="host-caption">Cris <span>Nivel 23</span></span>
+    </a>
+
+    <div class="details">
+      <div class="detail">
+        <b>Sábado 29 de agosto</b>
+        <span>Fecha de la misión</span>
+      </div>
+      <div class="detail">
+        <b>2:00 p. m.</b>
+        <span>Hora de reunión</span>
+      </div>
+      <div class="detail">
+        <b>Casa de Cris</b>
+        <span>Base secreta</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="mission-section">
+    <div class="mission-grid">
+      <div class="hud">
+        <p class="hud-label">Sistema Stark · Cuenta regresiva</p>
+        <div class="countdown">
+          <div class="time-unit"><b id="days">00</b><span>Días</span></div>
+          <div class="time-unit"><b id="hours">00</b><span>Horas</span></div>
+          <div class="time-unit"><b id="minutes">00</b><span>Minutos</span></div>
+          <div class="time-unit"><b id="seconds">00</b><span>Segundos</span></div>
+        </div>
+      </div>
+
+      <article class="menu-card">
+        <h2>Recarga tus poderes</h2>
+        <p>Todo héroe necesita combustible antes de volver a salvar el multiverso.</p>
+        <div class="menu-list">
+          <div class="menu-item"><span>🥣 Pozole</span><span>Recarga principal</span></div>
+          <div class="menu-item"><span>🕸️ Tostadas</span><span>Discos arácnidos</span></div>
+          <div class="menu-item"><span>⚡ Poderes extra</span><span>Guarniciones secretas</span></div>
+        </div>
+        <button class="mission-button" type="button">Rescatar el pozole</button>
+      </article>
+    </div>
+  </section>
+
+  <section class="confirm-section" id="confirmar">
+    <div class="confirm-box">
+      <div>
+        <h2>Confirma<br>tu misión</h2>
+        <p>Avísale a Cris si formarás parte de esta aventura.</p>
+        <p class="deadline">Confirma antes del 28 de agosto</p>
+      </div>
+
+      <form class="form" method="post" action="#">
+        <div class="field">
+          <label for="name">Tu nombre</label>
+          <input id="name" name="name" type="text" placeholder="Escribe tu nombre" required>
+        </div>
+
+        <div class="field">
+          <span class="legend">¿Podrás acompañarnos?</span>
+          <div class="choices">
+            <label class="choice"><input type="radio" name="attending" value="1" checked> Sí, ahí estaré</label>
+            <label class="choice"><input type="radio" name="attending" value="0"> No podré asistir</label>
+          </div>
+        </div>
+
+        <div class="split">
+          <div class="field">
+            <label for="guests">Personas que vendrán contigo</label>
+            <input id="guests" name="guests" type="number" min="0" max="10" value="1">
+          </div>
+          <div class="field">
+            <label for="phone">Teléfono</label>
+            <input id="phone" name="phone" type="tel" placeholder="Opcional">
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="message">Mensaje para Cris</label>
+          <textarea id="message" name="message" placeholder="Escribe un mensaje (opcional)"></textarea>
+        </div>
+
+        <button class="submit" type="submit">Guardar respuesta</button>
+        <p class="privacy">Tu respuesta quedará guardada de forma privada. Tu teléfono sólo se usará para comunicarnos contigo sobre la fiesta.</p>
+      </form>
+    </div>
+  </section>
+
+  <div class="footer-note">Invitación oficial · Cris 2026</div>
+
+  <script>
+    const targetDate = new Date('2026-08-29T14:00:00-06:00').getTime();
+    const daysEl = document.getElementById('days');
+    const hoursEl = document.getElementById('hours');
+    const minutesEl = document.getElementById('minutes');
+    const secondsEl = document.getElementById('seconds');
+
+    function updateCountdown() {
+      const diff = Math.max(0, targetDate - Date.now());
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      daysEl.textContent = String(days).padStart(2, '0');
+      hoursEl.textContent = String(hours).padStart(2, '0');
+      minutesEl.textContent = String(minutes).padStart(2, '0');
+      secondsEl.textContent = String(seconds).padStart(2, '0');
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>
